@@ -1,0 +1,89 @@
+-------------------------------------------------------------------------------
+General
+
+    man bash                bash scripting manual
+    #!/bin/bash             header
+    #                       commentary
+
+-------------------------------------------------------------------------------
+Variables
+
+    var=value               assignment
+    $var                    dereferencing
+    \$var                   no dereferencing
+    "string with $var"      string with dereferencing
+    'string with $var'      string without dereferencing
+    ${var}sometext          value of var is substituted
+    read var1 var2 ...      read input and store to vars
+    $1 $2 ...               script arguments
+    $0                      name of the script
+    $#                      number of arguments
+
+-------------------------------------------------------------------------------
+Operators
+
+    -z string               string is empty
+    -n string               string is not empty
+    ==, !=, <, >            string1 OP string2
+    -eq, -ne, -lt, -le,
+    -gt, -ge                arg1 OP arg2
+    -e filename             file exists
+    -f filename             file is a regular file
+    -d filename             file is a directory
+    -s filename             file has non-zero size
+    -x filename             file is executable
+    !, &&, ||               arg1 OP arg2, logical operators
+
+-------------------------------------------------------------------------------
+Compound commands
+
+    command1 | command2     pipeline
+    command1 && command2    list, sequence of pipelines, separated by ;, &,
+                            && or ||, and terminated by ;, & or \n
+    (list)                  list is executed in subshell environment
+    { list; }               group command, executed in current shell env
+    (( expr ))              arithmetic expression
+    [[ expr ]]              conditional expression
+
+    $ false || echo "Fail"
+    Fail
+    
+    $ true || echo "Will not be printed"
+    $
+    
+    $ true && echo "Things went well"
+    Things went well
+    
+    $ false ; echo "This will always run"
+    This will always run
+
+-------------------------------------------------------------------------------
+Control structures
+
+    if list; then list; elif list; then list; ] ... [ else list; ] fi
+    case word in [ (pattern) list ;; ] ... [ (*) list ;; ] esac
+    for name in word ... ; do list ; done
+    for (( expr1 ; expr2 ; expr3 )) ; do list ; done
+    while list ; do list ; done
+    until list ; do list ; done
+
+    break, continue         loop control
+
+-------------------------------------------------------------------------------
+Functions
+
+    name () { list; }       define a function
+    name arg1 arg2 ...      use a function
+    local var=value         define local variable
+
+-------------------------------------------------------------------------------
+Other
+
+    let "var = expr"        arithmetic (** - exponentiation)
+    var=`ls ~`              assign command return value to var
+    $?                      get return value of the last command
+    exit 0                  exit with return value
+    if `program` then ...   use return value
+
+
+

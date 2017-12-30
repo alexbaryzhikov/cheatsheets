@@ -1,0 +1,242 @@
+-------------------------------------------------------------------------------
+COMMANDS
+
+Basic
+
+    git config      # Set values for user name, email, gpg key, diff algorithm, etc
+    git init        # Initialize a git repo
+    git clone       # Copy a git repo and add the original location as a remote
+    git add         # Add changes in working tree to index
+    git rm          # Remove files from index and working tree so they stop being tracked
+    git commit      # Take index and creates a new commit object, and advance the branch
+    git status      # Show the status of files in index versus working tree
+    git branch      # List existing branches; create a new branch
+    git checkout    # Check out a different branch
+    git merge       # Merge one or more branches into current branch
+    git reset       # Reset index and working tree to the state of last commit
+    git rebase      # Move commits since you branched off to apply to the current HEAD
+    git stash       # Temporarily save changes that you don’t want to commit immediately
+    git tag         # Tag a specific commit with a human readable handle that never moves
+    git fetch       # Fetch all the objects that a remote version of your repository has
+    git pull        # Run a ‘git fetch’ then a ‘git merge’
+    git push        # Push all the objects that you have but a remote does not
+
+Inspecting
+
+    git log         # Show a listing of commits on a branch or involving a specific file
+    git show        # Show info about a git object, normally used to view commit info
+    git ls-tree     # Show a tree object, including details about each object it points to
+    git cat-file    # Provide content or type and size information for repository objects
+    git grep        # Search through repo trees of content for words and phrases
+    git diff        # Show differences between repo, index or working tree
+    gitk            # Graphical Tcl/Tk based interface to a local git repo
+
+Tools
+
+    git archive     # Create a tar or zip file of the contents of a single tree from repo
+    git gc          # Pack loose objects and optionally remove unreachable objects
+    git fsck        # Integrity check of the git “filesystem”
+    git prune       # Remove unreachable objects
+    git daemon      # A really simple server for Git repositories
+
+-------------------------------------------------------------------------------
+COMMON USE CASES
+
+Help
+
+    git help everyday           # A useful minimum set of commands for Everyday Git
+    git help workflows          # An overview of recommended workflows with Git
+
+Setup profile
+
+    git config --global user.name "Alex Baryzhikov"
+    git config --global user.email "aleksiarts@gmail.com"
+    cat ~/.gitconfig
+
+New repo
+
+    git init                    # New repo in current dir
+    git add .                   # Stage all files
+    git commit -m 'first'       # Create first commit
+
+Clone repo
+
+    git clone git://github.com/schacon/simplegit.git
+    git clone git://github.com/schacon/simplegit.git my_directory
+
+Ignoring
+
+    .gitignore
+        tmp/*
+        *.o
+        config/database.yml
+
+Adding and Committing
+
+    git status                  # What's on index
+    git add <file>              # Add file to index
+    git add *                   # Add all changes to index
+    git add -i                  # Interactive index editing
+    git add -u                  # Update index to match the working tree
+    git add --patch <files>     # Choose what changes to stage on hunk-by-hunk basis
+    git reset HEAD <file>       # Unstage file
+    git rm <file>               # Remove file from index and working tree
+    git rm --cached <file>      # Remove file from index
+    git commit -m 'message'     # Commit changes
+    git commit -a -m 'message'  # Add all changes, then commit
+    git commit --amend          # Tack new change to the previous commit
+
+Log
+
+    git log                     # Show commit logs
+    git log --oneline           # Pretty commits with partial prefix
+
+    # Show at most 30 commits filtered by date and author
+    git log -n 30 --since='1 month ago' --until=yesterday --author='Alex'
+
+    # Make alias to visualize commit graph (add to ~/.bashrc)
+    alias gg='git log --oneline --all --graph --decorate'
+
+Browsing
+
+    git show                    # Show various types of objects
+    git show master^            # Show the parent of 'master' branch
+    git show HEAD:<file>        # View HEAD version of a file
+    git ls-tree master          # List the contents of a tree object
+    git cat-file -t <object>    # Show object type
+    git cat-file -p <object>    # Print object's content
+    gitk                        # Graphic repository browser
+
+Searching
+
+    # Search for 'stream' in HEAD tree. Multiple commit references can be included
+    git grep -n 'stream' HEAD -- revised/*
+
+Diff
+
+    git diff                            # Diff between working tree and HEAD
+    git diff --cached                   # Diff between index and HEAD
+    git diff --numstat <tree>..<tree>   # Diff between two commits
+    git diff --stat <tree>              # Summary between a commit and the current HEAD
+    git diff <tree>..<tree> -- <file>   # Diff in specific file/path
+
+    # Create a patch file
+    git diff master..experiment > experiment.patch
+
+    # Apply a patch
+    patch -p1 < ~/experiment.patch
+
+Branching
+
+    git branch                  # List local branches; highlight current branch
+    git branch -a               # List including remote branches
+    git branch <name>           # Create a new branch
+    git checkout <commit>       # Switch HEAD to branch/commit
+    git checkout -b <name>      # Create a new branch and switch to it
+    git merge <commit>          # Merge branch/commit into current branch
+    git branch -d <name>        # Delete branch (must be submerged in upstream branch)
+    git branch -D <name>        # Drop branch (force)
+    git reset --hard            # Reset uncommited changes, leave untracked files
+    git reset --hard <commit>   # Move current branch to target branch/commit
+    git reset --hard ORIG_HEAD  # Undo last commit/merge
+
+    # Overwrite a file in current branch with the file from other branch/commit
+    git checkout <commit> <file>
+
+Rebasing
+
+    git rebase master           # Rebase current branch onto master
+    git rebase <where> <what>   # Reapply commits of <what> on top of <where>
+    git rebase -i <where>       # Interactive rebase; resolve confilcts by 'git add' the file
+    git cherry-pick <commit>    # Apply changes intoduced by <commit>
+
+    # Reapply commits <from>...<what> on top of <where>
+    git rebase --onto <where> <from> <what>   
+
+Stashing
+
+    git stash                   # Stash changes in a working tree
+    git stash list              # List of stashes
+    git stash show [<stash>]    # Show changes in the stash
+    git diff <stash>            # Diff between stash and working tree
+    git stash pop [<stash>]     # Inverse of 'git stash'
+    git stash apply [<stash>]   # Like 'stash pop', but doesn't drop stash
+    git stash drop [<stash>]    # Drop the stash
+
+Tagging
+
+    git tag -a v0.1 -m 'this is v0.1 tag'   # Create a tag object
+    git tag v0.1                            # Create a lightweight tag (no object)
+
+    # Create a tag object signed with GPG key
+    git tag -u <key-id> v0.1 -m 'the 0.1 release'
+    
+    # Verify a signed tag
+    git tag -v v0.1
+
+Exporting
+
+    git archive --prefix=abc/ HEAD | gzip > abc.tgz
+    git archive --format=zip master^ lib/ > abc-lib.zip
+
+Cleanup
+
+    git clean -f                # Clean working tree of untracked files
+    git gc                      # Trigger garbage collection: cleanup and optimize
+    git fsck                    # Verify connectivity and validity of a repo
+    git prune                   # Prune all unreachables
+
+-------------------------------------------------------------------------------
+DISTRIBUTED WORKFLOW
+
+    # Create a local branch and setup upstream confuguration
+    git checkout -t -b experiment origin/experiment
+    
+    # Clone a repo and make clone a bare repo (no working tree, no remotes)
+    git clone --bare simplegit/.git simplegit-bare.git
+
+    git fetch origin                # Fetch objects from remote
+    git pull origin/<branch>        # Fetch and merge
+    git push origin <branch>        # Push branch to remote
+    git push origin                 # Push all common branches
+    git push --force                # Force current branch to remote (in case you diverged)
+    git remote add origin <url>     # Add a remote
+    git branch -u origin/<branch>   # Set upstream for current branch
+    git remote show origin          # Show useful info about a remote
+    git request-pull <start> <url>  # Generate a summary of pending changes
+
+-------------------------------------------------------------------------------
+REMOTE REPOSITORY SETUP
+
+    mkdir bare_repo         # Create directory to contain bare repository
+    cd bare_repo
+    git --bare init         # Initialize bare repository
+
+    cd ~/project1           # Dir with project files
+    git init                # Initialize repo
+    git add *               # Add changes from working dir to index
+    git commit -m "first"   # Commit changes from index to head
+
+    git remote add origin ~/bare_repo      # Add remote repo, label it "origin"
+    git push --set-upstream origin master  # Push head -> remote repository
+
+At this point the remote repository is set up and we can use it to merge/clone
+new instances.
+
+    git clone ~/bare_repo   # Clone repo with remote configured as "origin"
+or
+    mkdir new_inst          # Create dir for new instance.
+    cd new_inst
+    git init
+    git remote add origin ~/bare_repo
+    git pull origin master
+    git push --set-upstream origin master
+
+If you look at .git/config, there must be something like
+
+    [remote "origin"]
+        url = ~/bare_repo
+        fetch = +refs/heads/*:refs/remotes/origin/*
+    [branch "master"]
+        remote = origin
+        merge = refs/heads/master

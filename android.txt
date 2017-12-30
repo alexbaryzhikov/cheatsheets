@@ -1,0 +1,12 @@
+
+# Remove intentions lightbulb in Android Studio
+
+    ~/.AndroidStudio3.0/config/options/editor.xml
+        <option name="SHOW_INTENTION_BULB" value="false" />
+
+
+# Switch between activities w/o recreating and finishing
+
+    AndroidManifest.xml
+        <activity android:launchMode="singleInstance">
+

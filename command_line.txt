@@ -1,0 +1,259 @@
+-------------------------------------------------------------------------------
+HELP
+
+    man command             show manual for the command
+    whatis command          one-line description
+    command --help          general command info
+    help command            built-in command info
+
+-------------------------------------------------------------------------------
+TERMINAL HOTKEYS
+
+    ctrl c              terminate current process
+    ctrl z              suspend current process ('fg' or 'bg' to resume)
+    ctrl d              send EOF to stdin
+    ctrl w              erase one word in current line
+    ctrl u              erase the whole line
+    ctrl r              reverse lookup of previous commands
+    ctrl l              clear screen
+    ctrl shift t        new tab
+    ctrl shift w        close current tab
+    alt number          switch to tab
+    
+-------------------------------------------------------------------------------
+FILE SYSTEM
+
+File & directory commands
+
+    ls                      directory listing
+    ls -lah                 formatted listing with hidden files
+    ls -d */                list only dirs
+    du -a path | wc -l      number of files in all subdirs of 'path'
+    pwd                     current directory
+    cd dir                  change directory
+    cd                      home
+    pushd dir               push current dir to the stack
+    popd                    change to top dir on the stack
+    mkdir dir               create directory
+    mkdir -p long/dir/path  create dir hierarchy
+    rm file                 delete file
+    rm -r dir               delete dir
+    rm -f file              force delete
+    cp from to              copy
+    mv from to              move
+    mv file{old,new}        rename file
+    rename 's/ab/cd/' *.c   rename multiple files
+    ln -s file link         create symbolic link
+    touch file              create file or update modified file
+    cat file                print contents of the file to stdout
+    less file               view the contents of the file
+    head file               print first 10 lines
+    tail file               print last 10 lines
+    tail -f file            output the file as it grows
+
+File permissions
+
+    chmod mask file         change file mode bits
+
+        mask    4 + 2 + 1 = read(r) + write(w) + execute(x)
+        order   owner / group / world
+       
+    chmod 755 file          -rwxr-xr-x
+    chmod 664 file          -rw-rw-r--
+    chown user file         change file owner
+    chgrp group file        change file group
+
+    Change mode of all files recursively:
+        find . -type f -exec chmod 644 {} \;
+    
+Archives
+
+    tar cf file.tar files       create a tarball
+    tar xf file.tar             unpack a tarball
+    tar zcvf file.tar.gz files  pack files
+    tar xzvf file.tar.gz        unpack
+    zip file.zip files          pack
+    unzip file.zip              unpack an archive
+    gzip file                   pack a file and move to an archive
+    gzip -d file.gz             unpack an archive
+
+Partitions & filesystems
+
+    sudo fdisk -l           list partition tables
+    sudo blkid              list all UUIDs
+    /etc/fstab              filesystem config
+    mount -a                mount all from fstab
+    mount | column -t       list mounted filesystems
+
+    Mount remote filesystem:
+      sudo sshfs -o allow_other inok@grasshopper:/media/inok/data /mnt/gh
+
+    sudo umount mnt_point   unmount filesystem
+    
+Search & compare
+
+    updatedb                update the 'locate' database
+    locate file             system-wide file search
+    find dir -name file     find files in dir recursively
+    grep pattern files      search for pattern in files
+    grep -r pattern dir     search for pattern in dir recursively
+    grep -B 3 -A 2 pat file display lines before and after pattern
+    grep -C 3 pat file      display the same number of lines around pattern
+    command | grep pattern  search for pattern in output
+    whereis command         locate the binary, source and manual
+    which command           locate a command
+    wc file                 world/line/byte count in file
+    diff files              compare files line by line
+
+-------------------------------------------------------------------------------
+SYTEM & PROCESSES
+
+Redirecting & pipes
+
+    command > file          redirect stdout to file
+    > file                  empty a file
+    command >> file         redirect stdout to file and append
+    command 2>> file        redirect stderr to file and append
+    command < file          use file instead of stdin
+    cmd1 | cmd2             use output of cmd1 as input for cmd2
+    !*                      reuse all params from last command
+    sudo !!                 repeat last command as root
+    echo "!!" > file.sh     create script of the last command
+  
+    Apply instruction to each string of a file:
+      sed 's/John/Nick/g' old.txt > new.txt
+  
+    mkfifo mypipe           create a pipe file
+
+Process management
+
+    ps                      show current processes
+    ps aux                  ps with a lot of detail
+    top                     real-time processes display
+    htop                    better version of 'top'
+    kill pid                kill a process
+    killall proc            kill all processes with given name
+    kill -sig_num proc_id   send a signal to a process
+    bg                      resume stopped job in background
+    fg                      bring the recent job to foreground
+    fg n                    bring the job n to foreground
+    ps aux | sort -nk +4 | tail     top 10 processes sorted by mem usage
+    ps aux | grep -i proc   find a process
+    
+Status
+
+    whoami                  who are you logged in as
+    who                     show who is logged in
+    groups                  your groups
+    date                    current date/time
+    cal                     this month's calendar
+    uptime                  show uptime
+    uname -a                show kernel config
+    cat /etc/lsb-release    show system version
+    cat /proc/cpuinfo       CPU info
+    cat /proc/meminfo       memory info
+    cat /etc/passwd         list of users
+    free                    memory usage
+    free -m                 memory usage in Mb
+    lsof                    list opened files
+    lscpu                   CPU info
+    nproc                   number of CPU cores
+    df                      disk usage
+    du                      dir space usage
+    du -sh                  human readable, size in Gb
+    du -s * | sort -nr      items in current dir sorted by size
+    dmesg                   kernel ring buffer
+    journalctl              system journal
+    env                     environment
+    set                     shell variables
+    export VAR=value        set environment variable
+    su                      change user ID or become superuser
+    exit                    logout of current session
+    reboot, shutdown
+
+Users & groups
+
+    adduser username            add user
+    addgroup group              add group
+    userdel username            remove/delete a user
+    rm -r /home/username        delete the home directory for the deleted user
+    finger user                 user info
+    gpasswd -a user group       add user to group
+    usermod -aG groups user     add user to groups
+    usermod -l name old_name    modify the username of a user
+    passwd username             change the password for a user
+    chsh username               change the shell for a user
+    chfn username               change the details for a user (for example real name)
+    cat /etc/passwd             list of all users
+    cat /etc/group              list of all groups
+    cut -d: -f1 /etc/passwd     list all local users
+
+Packages
+
+    sudo apt install package
+    sudo apt remove package
+    sudo apt list --installed
+    sudo apt list --upgradeable
+    sudo apt update             update packages info
+    sudo apt upgrade            install available upgrades
+    sudo dpgk -i file.deb       install package from file
+    sudo apt-get install -f     correct broken dependencies
+    sudo apt-mark auto <name>   mark package as automatic
+    sudo apt purge package      remove package and configuration files
+
+-------------------------------------------------------------------------------
+NETWORK
+
+Utilities
+
+    wget file               download file
+    wget -c file            continue stopped download
+    wget -r url             recursively download files from url
+    ip addr                 IP addr and other network info
+    ifconfig                network info (old)
+    curl ipinfo.io/ip
+    curl ifconfig.me        your external IP
+    netstat -tnlp           list all listening ports
+    lsof -i                 show real-time network activity
+    ping host
+    whois domain            get whois for domain
+    dig domain              get DNS for domain
+    dig -x host             reverse lookup host
+    vnstat                  network traffic monitor
+
+    Remotely edit a file:
+      nano scp://user@host//path
+    
+SSH
+
+    ssh user@host                   connect to host as a user
+    ssh -p port user@host           connect using given port
+    ssh -D port user@host           connect and use bind port
+    ssh-keygen                      generate key pair
+    ssh-add                         add key to system
+    cat ~/.id_rsa.pub               view the public key
+    nano ~/.ssh/authorized_keys     add a public key on a server
+
+    Mount network filesystem:
+        - host machine must have openssh-server installed
+        - regular 'ssh user@host' connection must work
+        - 'sshfs' is used w/o sudo, so mount_point has to be in home directory
+      sshfs user@host:path ~/mount_point
+
+    SSH through host in the middle:
+      ssh -t reachable_host ssh unreachable_host
+      
+File transfer
+
+    scp -P port user@host:path local_path   copy file
+    scp -r user@host:path local_path        copy dir
+
+TMUX
+
+    tmux a                  attach to last session
+    tmux list-sessions      list tmux sessions
+    tmux a -t number        attach to session by number
+    ctrl + b, d             detach from current session
+    ctrl + b, pgup          view history mode
+    
+  

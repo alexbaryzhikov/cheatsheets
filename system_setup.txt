@@ -1,0 +1,89 @@
+===============================================================================
+    Ubuntu system setup after fresh installation
+===============================================================================
+
+- Check UEFI boot mode
+    ./checkUEFI.sh
+
+
+- Change paths to user folders in
+    ~/.config/user-dirs.dirs
+
+
+- Change login screen wallpaper
+    sudo nano /usr/share/gnome-background-properties/zesty-wallpapers.xml
+
+
+- Change window resize mode
+    gsettings set org.compiz.resize:/org/compiz/profiles/unity/plugins/resize/ mode 2
+
+
+- Disable mouse acceleration
+
+    sudo mkdir /etc/X11/xorg.conf.d
+    sudo gedit /etc/X11/xorg.conf.d/sudo gedit 50-mouse-acceleration.conf
+
+50-mouse-acceleration.conf
+--------------------------
+Section "InputClass"
+	Identifier "Mouse Acceleration"
+	MatchIsPointer "yes"
+	Option "AccelerationProfile" "-1"
+	Option "AccelerationScheme" "none"
+	Option "AccelSpeed" "-0.75"
+EndSection
+
+- Hide Amazon
+    cp /usr/share/applications/ubuntu-amazon-default.desktop ~/.local/share/applications/
+    Add "Hidden=true" to the end of the file.
+
+
+- Disable network Avahi-daemon notification
+    sudo nano /etc/default/avahi-daemon
+    Add this line (or change it if already exists to):
+    AVAHI_DAEMON_DETECT_LOCAL=0
+
+
+- Install Unity Tweak Tool
+    sudo apt install unity-tweak-tool
+
+
+- Install themes and icons
+
+    Arc theme:
+    sudo add-apt-repository ppa:noobslab/themes
+    sudo apt update
+    sudo apt install arc-theme
+    
+    Arc icons:
+    sudo add-apt-repository ppa:noobslab/icons
+    sudo apt update
+    sudo install arc-icons
+    
+    Paper icons:
+    sudo add-apt-repository ppa:snwh/pulp
+    sudo apt-get update
+    sudo apt-get install paper-icon-theme
+
+
+- Install programs
+
+    alsamixer           # audio mixer (helps fixing mic loopback)
+    anaconda
+    chrome
+    dhex                # Hex editor
+    htop                # better than top
+    gimp
+    git
+    keepass2
+    love2d              # install love from apt, download and install packages from love2d.org
+    lua5.2
+    mc
+    openssh-client
+    openssh-server
+    perf                # performance analysis tools
+    pygame              # pip install pygame
+    skype
+    sublime-text-3
+    valgrind            # tools for debugging and profiling
+
