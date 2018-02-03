@@ -10,3 +10,10 @@
     AndroidManifest.xml
         <activity android:launchMode="singleInstance">
 
+
+# Convert DPs to pixels
+
+  private int dpToPx(float dps) {
+    return (int) (dps * getResources().getDisplayMetrics().density + 0.5f);
+  }
+  

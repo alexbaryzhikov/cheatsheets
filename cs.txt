@@ -1,0 +1,99 @@
+===============================================================================
+    Logic algebra
+===============================================================================
+
+Commutativity
+
+    a + b = b + a
+    a * b = b * a
+
+Associativity
+
+    (a + b) + c = a + (b + c)
+    (a * b) * c = a * (b * c)
+
+Distributivity
+
+    a * (b + c) = a * b + a * c
+    a + b * c = (a + b) * (a + c)
+
+Complements
+
+    a + !a = 1
+    a * !a = 0
+    !!a = a
+
+Absorption
+
+    a + a * b = a
+    a + !a * b = a + b
+    a * (a + b) = a
+    a * (!a + b) = a * b
+
+Reduction
+
+    a * b + !a * b = b
+    (a + b) * (!a + b) = b
+
+DeMorgan's law
+
+    !a + !b = !(a * b)
+    !a * !b = !(a + b)
+
+
+===============================================================================
+    Information
+===============================================================================
+
+Discrete random variable X has N possible values {x1, x2, ... , xN} which occur
+with probabilities {p1, p2, ... , pN}.
+
+Bits of information conveyed by message that specifies x[i]
+
+    I(i) = log2(1 / P(i))
+
+Information entropy -- expected information content of each symbol transmitted
+
+    H(X) = sum(P(i) * I(i) for i in X)
+
+
+===============================================================================
+    Operations timing
+===============================================================================
+
+execute typical instruction                   1 ns
+fetch from L1 cache memory                  0.5 ns
+branch misprediction                          5 ns
+fetch from L2 cache memory                    7 ns
+mutex lock/unlock                            25 ns
+fetch from main memory                      100 ns
+send 2k bytes over 1Gbps network             20 us
+read 1Mb sequentially from memory           250 us
+fetch from new disk location (seek)           8 ms
+read 1Mb sequentially from disk              20 ms
+send packet from US to Europe and back      150 ms
+
+
+===============================================================================
+    Numbers
+===============================================================================
+
+0 0000 0        2^0   1
+1 0001 1        2^1   2
+2 0010 2        2^2   4
+3 0011 3        2^3   8
+4 0100 4        2^4   16
+5 0101 5        2^5   32
+6 0110 6        2^6   64
+7 0111 7        2^7   128
+8 1000 8        2^8   256
+9 1001 9        2^9   512
+A 1010 10       2^10  1024
+B 1011 11       2^11  2048
+C 1100 12       2^12  4096
+D 1101 13       2^13  8192
+E 1110 14       2^14  16384
+F 1111 15       2^15  32768
+                2^16  65536
+
+
