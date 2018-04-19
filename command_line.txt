@@ -197,7 +197,7 @@ Packages
     sudo apt update             update packages info
     sudo apt upgrade            install available upgrades
     sudo dpgk -i file.deb       install package from file
-    sudo apt-get install -f     correct broken dependencies
+    sudo apt -f install         fix broken dependencies
     sudo apt-mark auto <name>   mark package as automatic
     sudo apt purge package      remove package and configuration files
 
@@ -239,6 +239,8 @@ SSH
         - regular 'ssh user@host' connection must work
         - 'sshfs' is used w/o sudo, so mount_point has to be in home directory
       sshfs user@host:path ~/mount_point
+
+    fusermount -u ~/mount_point     unmount sshfs
 
     SSH through host in the middle:
       ssh -t reachable_host ssh unreachable_host

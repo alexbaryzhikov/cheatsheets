@@ -11,7 +11,7 @@ Insert          Select 'current object'
 +               Select a group of files. (regular expression can be used)
 \               Unselect a group of files. This is the opposite of the Plus key.
 Meta+Enter      Insert 'current object' to command line.
-Meta+.          Show/hidde hidden files and directories (that starts with '.').
+Meta+.          Show/hide hidden files and directories (that starts with '.').
 Meta+,          Change panel split view mode to vertical/horizontal.
 Meta+a
 Ctrl+x,p        Insert in command line path of active panel.
@@ -22,8 +22,8 @@ Meta+i          Make the current directory of the current panel also the current
                 mode if needed. If the current panel is panelized, the other panel
                 doesn't become panelized.
 Meta+n
-Meta+p          Use these keys to browse through the command history. Meta-p
-                takes you to the last entry, Meta-n takes you to the next one.
+Meta+p          Use these keys to browse through the command history. Meta+p
+                takes you to the last entry, Meta+n takes you to the next one.
 Meta+o          If the currently selected file is a directory, load that directory
                 on the other panel and moves the selection to the next file.
 Meta+g

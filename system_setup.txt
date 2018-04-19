@@ -2,88 +2,106 @@
     Ubuntu system setup after fresh installation
 ===============================================================================
 
-- Check UEFI boot mode
-    ./checkUEFI.sh
-
-
-- Change paths to user folders in
+## Change paths to user folders
     ~/.config/user-dirs.dirs
 
 
-- Change login screen wallpaper
-    sudo nano /usr/share/gnome-background-properties/zesty-wallpapers.xml
+## Disable mouse acceleration
+    $ sudo gedit /usr/share/X11/xorg.conf.d/90-mouse.conf
 
-
-- Change window resize mode
-    gsettings set org.compiz.resize:/org/compiz/profiles/unity/plugins/resize/ mode 2
-
-
-- Disable mouse acceleration
-
-    sudo mkdir /etc/X11/xorg.conf.d
-    sudo gedit /etc/X11/xorg.conf.d/sudo gedit 50-mouse-acceleration.conf
-
-50-mouse-acceleration.conf
---------------------------
 Section "InputClass"
-	Identifier "Mouse Acceleration"
-	MatchIsPointer "yes"
-	Option "AccelerationProfile" "-1"
-	Option "AccelerationScheme" "none"
-	Option "AccelSpeed" "-0.75"
+    Identifier "mouse"
+    MatchIsPointer "on"
+    Option "AccelerationProfile" "-1"
+    Option "AccelerationScheme" "none"
 EndSection
 
-- Hide Amazon
-    cp /usr/share/applications/ubuntu-amazon-default.desktop ~/.local/share/applications/
+## Hide Amazon
+    $ cp /usr/share/applications/ubuntu-amazon-default.desktop ~/.local/share/applications/
     Add "Hidden=true" to the end of the file.
 
 
-- Disable network Avahi-daemon notification
-    sudo nano /etc/default/avahi-daemon
+## Disable network Avahi-daemon notification
+    $ sudo nano /etc/default/avahi-daemon
     Add this line (or change it if already exists to):
     AVAHI_DAEMON_DETECT_LOCAL=0
 
 
-- Install Unity Tweak Tool
-    sudo apt install unity-tweak-tool
+## Add gnome-system-monitor hotkey
+    System Settings > Keyboard > Shortcuts > Custom Shortcuts > add 'gnome-system-monitor'
 
 
-- Install themes and icons
-
-    Arc theme:
-    sudo add-apt-repository ppa:noobslab/themes
-    sudo apt update
-    sudo apt install arc-theme
-    
-    Arc icons:
-    sudo add-apt-repository ppa:noobslab/icons
-    sudo apt update
-    sudo install arc-icons
-    
-    Paper icons:
-    sudo add-apt-repository ppa:snwh/pulp
-    sudo apt-get update
-    sudo apt-get install paper-icon-theme
+## Unity/Gnome Tweak Tool
+    $ sudo apt install unity-tweak-tool
+    $ sudo apt install gnome-tweak-tool
 
 
-- Install programs
+## Gnome Extensions
+    No title bar
+    Topicons
+    User themes
 
-    alsamixer           # audio mixer (helps fixing mic loopback)
-    anaconda
+
+## Themes and icons
+    $ sudo add-apt-repository ppa:noobslab/themes   # Arc theme
+    $ sudo add-apt-repository ppa:snwh/pulp         # Paper icons
+    $ sudo apt update
+    $ sudo apt install arc-theme
+    $ sudo apt install paper-icon-theme
+
+
+## Wallpaper
+    /usr/share/backgrounds  # copy image here
+    /usr/share/gnome-background-properties/xenial-wallpapers.xml  # edit
+
+
+## Terminal prompt
+    Edit ~/.bashrc
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\w\$ '
+fi
+
+
+## Apps
+    alsamixer           # Audio mixer (helps fixing mic loopback)
+    bmon                # Network monitor
+    brasero             # DVD burner
     chrome
-    dhex                # Hex editor
-    htop                # better than top
-    gimp
-    git
+    dosbox
+    dropbox
+    htop                # Better than top
     keepass2
-    love2d              # install love from apt, download and install packages from love2d.org
-    lua5.2
     mc
+    OBS
     openssh-client
     openssh-server
-    perf                # performance analysis tools
-    pygame              # pip install pygame
-    skype
-    sublime-text-3
-    valgrind            # tools for debugging and profiling
+    remmina             # Remote desktop manager
+    telegram
+    woeusb              # Creating Windows USB from a disk image
+    zcash
 
+
+## Dev tools
+    dhex                # Hex editor
+    git
+    openjdk-8-jdk       # java SDK
+    perf                # Performance analysis tools
+    valgrind            # Tools for debugging and profiling
+
+
+## IDEs
+    Sublime Text
+    Android Studio
+    intelliJ IDEA
+    PyCharm
+
+
+## Tensorflow + Keras
+    cuda                # CUDA toolkit
+    cudnn               # cuDNN library
+    tensorflow          
+    keras
+    

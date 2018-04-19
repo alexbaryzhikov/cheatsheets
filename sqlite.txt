@@ -1,0 +1,12 @@
+CREATE database
+
+    sqlite3 file.db                     # Create db
+    sqlite3 file.db .dump > file.sql    # Dump db to text file
+    sqlite3 file.db < file.sql          # Restore db from text file
+    
+ATTACH/DETACH database
+
+    ATTACH DATABASE 'testDB.db' as 'test';  # Attach existing or create new db
+    DETACH DATABASE 'test';                 # Detach db by logical name
+
+

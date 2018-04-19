@@ -1,33 +1,30 @@
 -------------------------------------------------------------------------------
-Install/Update Grub
+## Grub boot configuration
 
-    sudo grub-install /dev/sdX  # Example: sudo grub-install /dev/sda
-    sudo update-grub            # Should be run after a configuration change,
-                                # like adding/removing boot entries
+    $ sudo grub-install /dev/sdX  # 'sdX' - target partition, e.g. sda
 
-The GRUB 2 files will normally be located in
-
-    /boot/grub
-    /etc/grub.d
-    /etc/default/grub           # File in the partition containing the Ubuntu
-                                # installation
+    /etc/default/grub           # Grub config
+    $ sudo update-grub          # Apply configuration changes
 
 -------------------------------------------------------------------------------
-Boot configuration
+## EFI boot configuration
 
     /boot/efi/EFI           # Boot records locations (for clean ubuntu boot you
                             # only need /boot/efi/EFI/ubuntu folder).
-    /etc/default/grub       # Grub boot options (show menu, timeouts, etc.)
-    /boot/grub/grub.cfg     # Grub menu configuration
-
-    sudo efibootmgr -v          # List of boot entries
-    sudo efibootmgr -b X -B     # Remove boot entry X (corresponding files must
+    $ sudo efibootmgr -v        # List of boot entries
+    $ sudo efibootmgr -b X -B   # Remove boot entry X (corresponding files must
                                 # be also deleted, or entry will be restored)
 
-    mount -o remount,rw /   # Mount root partition r/w, in recovery mode
+    $ mount -o remount,rw /   # Mount root partition r/w, in recovery mode
 
 -------------------------------------------------------------------------------
-Find package...
+## Boot modes
+
+    $ sudo systemctl set-default graphical.target   # GUI
+    $ sudo systemctl set-default multi-user.target  # Console
+
+-------------------------------------------------------------------------------
+## Find package...
 
 ...which contains missing file
 
@@ -38,74 +35,67 @@ Find package...
 
 ...with <pattern> in name
 
-    aptitude search <pattern>
+    $ aptitude search <pattern>
 
 -------------------------------------------------------------------------------
-Change iPython startup dir
+## iPython startup dir
 
-    Place "autorun.ipy" to:
-    /home/inok/.ipython/profile_default/startup
+    Place "autorun.ipy" to ~/.ipython/profile_default/startup
 
 -------------------------------------------------------------------------------
-Fix screen tearing while using Nvidia drivers
+## Fix screen tearing while using Nvidia drivers
 
     nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 
 -------------------------------------------------------------------------------
-Fix Skype tray icon
+## Create autorun script
 
-    # Ubuntu 16.04
-    sudo apt-get install sni-qt:i386                            
-
-    # Ubuntu 17.04
-    Add "env XDG_CURRENT_DESKTOP=Unity" (without the quotes) immediately after "Exec=" to:
-    /usr/share/applications/skypeforlinux.desktop
+    1) Create script
+    2) Run "Startup Applications" and add script
 
 -------------------------------------------------------------------------------
-Create autorun script
+## Setup Java SDK
 
-    1) create script
-    2) run "Startup Applications" and add script
-
--------------------------------------------------------------------------------
-Setup Java SDK
-
-    1) unpack files to some dir /mnt/data/Java/jdk
-    2) add /mnt/data/Java/jdk/bin to PATH      in ~/.bashrc
-    3) add /mnt/data/Java/jdk     to JAVA_HOME in /etc/environment
+    # Unpack SDK files to some dir /mnt/data/Java/jdk
+    export PATH="/mnt/data/Java/jdk/bin:$PATH"  # ~/.bashrc
+    export JAVA_HOME="/mnt/data/Java/jdk"       # /etc/environment
 
 -------------------------------------------------------------------------------
-Tools
+# Paths
 
-Clear terminal buffer
-    tput reset
-
-Find and remove directories
-    find . -name "__pycache__" -type d -exec rm -r "{}" \;
-
-Grep recursively and specify file type
-    grep -r --include \*.c "main"
-
-GPU status
-    nvidia-smi
-
-Restart X
-    sudo systemctl restart lightdm.service
-
-Rename multiple
-    # with counter
-    rename 's/(.+)/our $i; sprintf("%02d$1", 1+$i++)/e' *
-    
-    # change extensions
-    rename 's/(.+)scm$/$1rkt/' *.scm
-
-    # change extensions in all subdirs
-    find -name "*.scm" -exec rename 's/(.+)scm$/$1rkt/' "{}" \;
-
-Use C preprocessor on non-C file
-    cpp -P file.in file.out
-
-Paths
     ~/.local/share/icons    # add new icon
     /etc/environment        # environment variables
     ~/.bashrc               # bash startup script
+
+-------------------------------------------------------------------------------
+## Other
+
+# Clear terminal buffer
+    $ tput reset
+
+# Find and remove directories
+    $ find . -name "__pycache__" -type d -exec rm -r "{}" \;
+
+# Grep recursively and specify file type
+    $ grep -r --include \*.c "main"
+
+# GPU status
+    $ nvidia-smi
+
+# Restart X
+    $ sudo systemctl restart lightdm.service
+
+# Rename multiple
+    # with counter
+    $ rename 's/(.+)/our $i; sprintf("%02d$1", 1+$i++)/e' *
+    
+    # change extensions
+    $ rename 's/(.+)scm$/$1rkt/' *.scm
+
+    # change extensions in all subdirs
+    $ find -name "*.scm" -exec rename 's/(.+)scm$/$1rkt/' "{}" \;
+
+# Use C preprocessor on non-C file
+    $ cpp -P file.in file.out
+
+

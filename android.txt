@@ -13,7 +13,21 @@
 
 # Convert DPs to pixels
 
-  private int dpToPx(float dps) {
-    return (int) (dps * getResources().getDisplayMetrics().density + 0.5f);
-  }
-  
+    private int dpToPx(float dps) {
+        return (int) (dps * getResources().getDisplayMetrics().density + 0.5f);
+    }
+
+
+# Key app components to know
+    
+    - Activity
+    - Service
+    - Broadcast Receiver
+    - Content Provider
+
+
+# Plug/unplug battery charger on emulator. Skip "-s <device_name>" if only one device is connected
+
+    $ adb -s emulator-5554 shell dumpsys battery unplug
+    $ adb -s emulator-5554 shell dumpsys battery reset
+
