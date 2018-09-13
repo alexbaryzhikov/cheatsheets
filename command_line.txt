@@ -190,14 +190,16 @@ Users & groups
 
 Packages
 
+    sudo apt update             update packages info
+    sudo apt upgrade            install available upgrades
+    sudo apt autoremove         automatically remove unnecessary packages
+    sudo apt install -f         fix broken dependencies 
+
     sudo apt install package
     sudo apt remove package
     sudo apt list --installed
     sudo apt list --upgradeable
-    sudo apt update             update packages info
-    sudo apt upgrade            install available upgrades
     sudo dpgk -i file.deb       install package from file
-    sudo apt -f install         fix broken dependencies
     sudo apt-mark auto <name>   mark package as automatic
     sudo apt purge package      remove package and configuration files
 

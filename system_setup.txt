@@ -16,6 +16,7 @@ Section "InputClass"
     Option "AccelerationScheme" "none"
 EndSection
 
+
 ## Hide Amazon
     $ cp /usr/share/applications/ubuntu-amazon-default.desktop ~/.local/share/applications/
     Add "Hidden=true" to the end of the file.
@@ -37,9 +38,14 @@ EndSection
 
 
 ## Gnome Extensions
+
+$ sudo apt install chrome-gnome-shell	# For Firefox
+
     No title bar
     Topicons
     User themes
+
+# Extensions are configured in Tweaks/Extensions
 
 
 ## Themes and icons
@@ -70,6 +76,7 @@ fi
     bmon                # Network monitor
     brasero             # DVD burner
     chrome
+    firefox
     dosbox
     dropbox
     htop                # Better than top
@@ -85,18 +92,19 @@ fi
 
 
 ## Dev tools
-    dhex                # Hex editor
     git
+    dhex                # Hex editor
     openjdk-8-jdk       # java SDK
     perf                # Performance analysis tools
     valgrind            # Tools for debugging and profiling
 
 
 ## IDEs
-    Sublime Text
     Android Studio
     intelliJ IDEA
     PyCharm
+    Atom
+    Sublime Text
 
 
 ## Tensorflow + Keras
