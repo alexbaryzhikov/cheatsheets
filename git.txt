@@ -81,7 +81,8 @@ Adding and Committing
     git add --patch <files>     # Choose what changes to stage on hunk-by-hunk basis
     git reset HEAD <file>       # Unstage file
     git rm <file>               # Remove file from index and working tree
-    git rm --cached <file>      # Remove file from index
+    git rm --cached <file>      # Remove file from index but keep in working tree
+    git rm -r --cached <folder> # Remove folder from index but keep in working tree
     git commit -m 'message'     # Commit changes
     git commit -a -m 'message'  # Add all changes, then commit
     git commit --amend          # Tack new change to the previous commit
@@ -139,9 +140,13 @@ Branching
     git reset --hard            # Reset uncommited changes, leave untracked files
     git reset --hard <commit>   # Move current branch to target branch/commit
     git reset --hard ORIG_HEAD  # Undo last commit/merge
+    
+    # Delete remote branch
+    git push <remote_name> --delete <branch_name>
 
     # Overwrite a file in current branch with the file from other branch/commit
     git checkout <commit> <file>
+
 
 Rebasing
 

@@ -6,7 +6,7 @@
     ~/.config/user-dirs.dirs
 
 
-## Disable mouse acceleration
+## (Ubuntu 16) Disable mouse acceleration
     $ sudo gedit /usr/share/X11/xorg.conf.d/90-mouse.conf
 
 Section "InputClass"
@@ -15,6 +15,7 @@ Section "InputClass"
     Option "AccelerationProfile" "-1"
     Option "AccelerationScheme" "none"
 EndSection
+
 
 ## Hide Amazon
     $ cp /usr/share/applications/ubuntu-amazon-default.desktop ~/.local/share/applications/
@@ -37,14 +38,16 @@ EndSection
 
 
 ## Gnome Extensions
+    Dash to Dock
+    Hide activities button
     No title bar
-    Topicons
     User themes
+    Topicons
 
 
 ## Themes and icons
     $ sudo add-apt-repository ppa:noobslab/themes   # Arc theme
-    $ sudo add-apt-repository ppa:snwh/pulp         # Paper icons
+    $ sudo add-apt-repository ppa:snwh/ppa          # Paper icons
     $ sudo apt update
     $ sudo apt install arc-theme
     $ sudo apt install paper-icon-theme
@@ -70,6 +73,7 @@ fi
     bmon                # Network monitor
     brasero             # DVD burner
     chrome
+    firefox
     dosbox
     dropbox
     htop                # Better than top
@@ -81,22 +85,22 @@ fi
     remmina             # Remote desktop manager
     telegram
     woeusb              # Creating Windows USB from a disk image
-    zcash
 
 
 ## Dev tools
-    dhex                # Hex editor
     git
+    dhex                # Hex editor
     openjdk-8-jdk       # java SDK
     perf                # Performance analysis tools
     valgrind            # Tools for debugging and profiling
 
 
 ## IDEs
-    Sublime Text
     Android Studio
     intelliJ IDEA
     PyCharm
+    Atom
+    Sublime Text
 
 
 ## Tensorflow + Keras
