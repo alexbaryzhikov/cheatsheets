@@ -37,7 +37,10 @@ EndSection
     $ sudo apt install gnome-tweak-tool
 
 
-## Gnome Extensions
+## Gnome Extensions. Extensions are configured in Tweaks/Extensions
+
+    $ sudo apt install chrome-gnome-shell	# For Firefox gnome extensions plugin
+
     Dash to Dock
     Hide activities button
     No title bar
