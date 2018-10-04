@@ -51,9 +51,11 @@ EndSection
 ## Themes and icons
     $ sudo add-apt-repository ppa:noobslab/themes   # Arc theme
     $ sudo add-apt-repository ppa:snwh/ppa          # Paper icons
+    $ sudo add-apt-repository ppa:dyatlov-igor/la-capitaine  # Capitaine cursors
     $ sudo apt update
     $ sudo apt install arc-theme
     $ sudo apt install paper-icon-theme
+    $ sudo apt install la-capitaine-cursor-theme
 
 
 ## Wallpaper

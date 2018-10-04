@@ -98,4 +98,5 @@
 # Use C preprocessor on non-C file
     $ cpp -P file.in file.out
 
-
+# Make http request and print formatted json response
+    $ curl 'https://127.0.0.1/store/apps' -H 'X-MCC-ID: 101' -k | python -m json.tool
