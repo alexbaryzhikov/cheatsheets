@@ -1,6 +1,5 @@
-===============================================================================
-    Ubuntu system setup after fresh installation
-===============================================================================
+Ubuntu system setup after fresh installation
+============================================
 
 ## Change paths to user folders
     ~/.config/user-dirs.dirs
@@ -9,12 +8,14 @@
 ## (Ubuntu 16) Disable mouse acceleration
     $ sudo gedit /usr/share/X11/xorg.conf.d/90-mouse.conf
 
+```
 Section "InputClass"
     Identifier "mouse"
     MatchIsPointer "on"
     Option "AccelerationProfile" "-1"
     Option "AccelerationScheme" "none"
 EndSection
+```
 
 
 ## Hide Amazon
@@ -37,7 +38,8 @@ EndSection
     $ sudo apt install gnome-tweak-tool
 
 
-## Gnome Extensions. Extensions are configured in Tweaks/Extensions
+## Gnome Extensions
+Extensions are configured in Tweaks/Extensions
 
     $ sudo apt install chrome-gnome-shell	# For Firefox gnome extensions plugin
 
@@ -65,12 +67,13 @@ EndSection
 
 ## Terminal prompt
     Edit ~/.bashrc
-
+```
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\w\$ '
 fi
+```
 
 
 ## Apps
