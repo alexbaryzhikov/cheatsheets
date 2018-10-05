@@ -34,12 +34,12 @@ EndSection
 
 
 ## Unity/Gnome Tweak Tool
-    $ sudo apt install unity-tweak-tool
-    $ sudo apt install gnome-tweak-tool
+    $ sudo apt install unity-tweak-tool         # 16.04
+    $ sudo apt install gnome-tweak-tool         # 18.04
 
 
 ## Gnome Extensions
-Extensions are configured in Tweaks/Extensions
+Extensions are configured in Tweaks/Extensions.
 
     $ sudo apt install chrome-gnome-shell	# For Firefox gnome extensions plugin
 
@@ -47,7 +47,6 @@ Extensions are configured in Tweaks/Extensions
     Hide activities button
     No title bar
     User themes
-    Topicons
 
 
 ## Themes and icons
@@ -57,8 +56,10 @@ Extensions are configured in Tweaks/Extensions
     $ sudo apt install arc-theme
     $ sudo apt install paper-icon-theme
 
+
 ## Cursors
-    https://www.gnome-look.org/browse/cat/107/
+<https://www.gnome-look.org/browse/cat/107/>
+
 
 ## Wallpaper
     /usr/share/backgrounds  # copy image here
