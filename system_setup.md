@@ -98,7 +98,7 @@ fi
 
 ## Dev tools
     git
-    dhex                # Hex editor
+    hexedit             # Hex editor
     openjdk-8-jdk       # java SDK
     perf                # Performance analysis tools
     valgrind            # Tools for debugging and profiling
