@@ -1,6 +1,5 @@
-===============================================================================
-    Ubuntu system setup after fresh installation
-===============================================================================
+Ubuntu system setup after fresh installation
+============================================
 
 ## Change paths to user folders
     ~/.config/user-dirs.dirs
@@ -9,12 +8,14 @@
 ## (Ubuntu 16) Disable mouse acceleration
     $ sudo gedit /usr/share/X11/xorg.conf.d/90-mouse.conf
 
+```
 Section "InputClass"
     Identifier "mouse"
     MatchIsPointer "on"
     Option "AccelerationProfile" "-1"
     Option "AccelerationScheme" "none"
 EndSection
+```
 
 
 ## Hide Amazon
@@ -33,11 +34,12 @@ EndSection
 
 
 ## Unity/Gnome Tweak Tool
-    $ sudo apt install unity-tweak-tool
-    $ sudo apt install gnome-tweak-tool
+    $ sudo apt install unity-tweak-tool         # 16.04
+    $ sudo apt install gnome-tweak-tool         # 18.04
 
 
-## Gnome Extensions. Extensions are configured in Tweaks/Extensions
+## Gnome Extensions
+Extensions are configured in Tweaks/Extensions.
 
     $ sudo apt install chrome-gnome-shell	# For Firefox gnome extensions plugin
 
@@ -45,7 +47,6 @@ EndSection
     Hide activities button
     No title bar
     User themes
-    Topicons
 
 
 ## Themes and icons
@@ -55,8 +56,10 @@ EndSection
     $ sudo apt install arc-theme
     $ sudo apt install paper-icon-theme
 
+
 ## Cursors
-    https://www.gnome-look.org/browse/cat/107/
+<https://www.gnome-look.org/browse/cat/107/>
+
 
 ## Wallpaper
     /usr/share/backgrounds  # copy image here
@@ -65,12 +68,13 @@ EndSection
 
 ## Terminal prompt
     Edit ~/.bashrc
-
+```
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\w\$ '
 fi
+```
 
 
 ## Apps
@@ -94,7 +98,7 @@ fi
 
 ## Dev tools
     git
-    dhex                # Hex editor
+    hexedit             # Hex editor
     openjdk-8-jdk       # java SDK
     perf                # Performance analysis tools
     valgrind            # Tools for debugging and profiling

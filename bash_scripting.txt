@@ -60,7 +60,7 @@ Compound commands
 -------------------------------------------------------------------------------
 Control structures
 
-    if list; then list; elif list; then list; ] ... [ else list; ] fi
+    if list; then list; [elif list; then list; ] ... [ else list; ] fi
     case word in [ (pattern) list ;; ] ... [ (*) list ;; ] esac
     for name in word ... ; do list ; done
     for (( expr1 ; expr2 ; expr3 )) ; do list ; done

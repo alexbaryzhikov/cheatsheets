@@ -100,3 +100,7 @@
 
 # Make http request and print formatted json response
     $ curl 'https://127.0.0.1/store/apps' -H 'X-MCC-ID: 101' -k | python -m json.tool
+
+# Check session type (Wayland/x11)
+    $ loginctl                          # look for session with user "gdm"
+    $ loginctl show-session c1 -p Type  # displays session type
