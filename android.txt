@@ -111,6 +111,21 @@
     $ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
 
 
-# Logcat filtered by uid
+## Logcat filtered by uid
 
     $ adb logcat --pid=$(adb shell ps | grep "ru.niisokb.mcc" | awk '{print $2}')
+
+
+## UDP log
+
+1. Redirecting UDP traffic to file
+    
+    $ socat -u udp-recv:55555,reuseaddr - > log.log &
+
+2. Listening to file with filter
+
+    $ tail -n 300 -f log.log | grep FooBar
+
+3. Send test message
+
+    $ netcat -u localhost 55555
