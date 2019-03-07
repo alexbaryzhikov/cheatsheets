@@ -61,11 +61,45 @@
     export JAVA_HOME="/mnt/data/Java/jdk"       # /etc/environment
 
 -------------------------------------------------------------------------------
-# Paths
+## Paths
 
     ~/.local/share/icons    # add new icon
     /etc/environment        # environment variables
     ~/.bashrc               # bash startup script
+
+-------------------------------------------------------------------------------
+## SSH
+
+# Client: Copy ssh key to server
+    $ ssh-copy-id vdesktop@80.211.128.140 -p 1022
+
+# Client: Create ssh config
+    $ touch .ssh/config
+
+```
+Host helga
+    Hostname 80.211.128.140
+    Port 1022
+    User vdesktop
+```
+
+# Now we can connect by just
+    $ ssh helga
+
+# Client: Create background ssh tunnel
+    $ ssh -D 10000 -f -q -N helga
+
+# Server: Turn off password auth
+    $ nano /etc/ssh/sshd_config
+
+```
+# Change to no to disable tunnelled clear text passwords
+#PasswordAuthentication yes
+```
+
+# Client configuration
+    https://www.digitalocean.com/community/tutorials/how-to-route-web-traffic-securely-without-a-vpn-using-a-socks-tunnel
+
 
 -------------------------------------------------------------------------------
 ## Other
