@@ -118,14 +118,18 @@
 
 ## UDP log
 
-1. Redirecting UDP traffic to file
+1. Redirect UDP traffic to file
     
-    $ socat -u udp-recv:55555,reuseaddr - > log.log &
+    $ socat -u udp-recv:55555,reuseaddr - > test.log &
 
-2. Listening to file with filter
+2. Listen to file with filter
 
-    $ tail -n 300 -f log.log | grep FooBar
+    $ tail -n +0 -f log.log | grep FooBar
 
 3. Send test message
 
     $ netcat -u localhost 55555
+
+4. Switch log file
+
+    $ killall socat && socat -u udp-recv:55555,reuseaddr - > test2.log &
