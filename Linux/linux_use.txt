@@ -1,0 +1,127 @@
+-------------------------------------------------------------------------------
+# iPython startup dir
+    Place "autorun.ipy" to ~/.ipython/profile_default/startup
+
+# Fix screen tearing while using Nvidia drivers
+    nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+
+# Create autorun script
+    1) Create script
+    2) Run "Startup Applications" and add script
+
+# Setup Java SDK
+    # Unpack SDK files to some dir /mnt/data/Java/jdk
+    export PATH="/mnt/data/Java/jdk/bin:$PATH"  # ~/.bashrc
+    export JAVA_HOME="/mnt/data/Java/jdk"       # /etc/environment
+
+# Paths
+    ~/.local/share/icons    # add new icon
+    /etc/environment        # environment variables
+    ~/.bashrc               # bash startup script
+
+# Clear terminal buffer
+    $ tput reset
+
+# Find and remove directories
+    $ find . -name "__pycache__" -type d -exec rm -r "{}" \;
+
+# Grep recursively and specify file type
+    $ grep -r --include \*.c "main"
+
+# GPU status
+    $ nvidia-smi
+
+# Restart X
+    $ sudo systemctl restart lightdm.service
+
+# Rename multiple
+    # with counter
+    $ rename 's/(.+)/our $i; sprintf("%02d$1", 1+$i++)/e' *
+    
+    # change extensions
+    $ rename 's/(.+)scm$/$1rkt/' *.scm
+
+    # change extensions in all subdirs
+    $ find -name "*.scm" -exec rename 's/(.+)scm$/$1rkt/' "{}" \;
+
+# Use C preprocessor on non-C file
+    $ cpp -P file.in file.out
+
+# Make http request and print formatted json response
+    $ curl 'https://127.0.0.1/store/apps' -H 'X-MCC-ID: 101' -k | python -m json.tool
+
+# Check session type (Wayland/x11)
+    $ loginctl                          # look for session with user "gdm"
+    $ loginctl show-session c1 -p Type  # displays session type
+
+-------------------------------------------------------------------------------
+# SSH
+
+# Client: Copy ssh key to server
+    $ ssh-copy-id vdesktop@80.211.128.140 -p 1022
+
+# Client: Create ssh config
+    $ touch .ssh/config
+
+```
+Host helga
+    Hostname 80.211.128.140
+    Port 1022
+    User vdesktop
+```
+
+# Now we can connect by just
+    $ ssh helga
+
+# Client: Create background ssh tunnel
+    $ ssh -D 10000 -f -q -N helga
+
+# Server: Turn off password auth
+    $ nano /etc/ssh/sshd_config
+
+```
+# Change to no to disable tunnelled clear text passwords
+#PasswordAuthentication yes
+```
+
+# Client configuration
+    https://www.digitalocean.com/community/tutorials/how-to-route-web-traffic-securely-without-a-vpn-using-a-socks-tunnel
+
+-------------------------------------------------------------------------------
+# Grub boot configuration
+
+    $ sudo grub-install /dev/sdX  # 'sdX' - target partition, e.g. sda
+
+    /etc/default/grub           # Grub config
+    $ sudo update-grub          # Apply configuration changes
+
+-------------------------------------------------------------------------------
+# EFI boot configuration
+
+    /boot/efi/EFI           # Boot records locations (for clean ubuntu boot you
+                            # only need /boot/efi/EFI/ubuntu folder).
+    $ sudo efibootmgr -v        # List of boot entries
+    $ sudo efibootmgr -b X -B   # Remove boot entry X (corresponding files must
+                                # be also deleted, or entry will be restored)
+
+    $ mount -o remount,rw /   # Mount root partition r/w, in recovery mode
+
+-------------------------------------------------------------------------------
+# Boot modes
+
+    $ sudo systemctl set-default graphical.target   # GUI
+    $ sudo systemctl set-default multi-user.target  # Console
+
+-------------------------------------------------------------------------------
+# Find package...
+
+...which contains missing file
+
+    $ sudo apt-get install apt-file
+    $ sudo apt-file update
+    $ apt-file search "X11/extensions/XTest.h"
+    libxtst-dev: /usr/include/X11/extensions/XTest.h
+
+...with <pattern> in name
+
+    $ aptitude search <pattern>

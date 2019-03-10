@@ -1,29 +1,29 @@
-## Remove intentions lightbulb in Android Studio
+# Remove intentions lightbulb in Android Studio
 
     ~/.AndroidStudio3.0/config/options/editor.xml
         <option name="SHOW_INTENTION_BULB" value="false" />
 
 
-## Switch between activities w/o recreating and finishing
+# Switch between activities w/o recreating and finishing
 
     AndroidManifest.xml
         <activity android:launchMode="singleInstance">
 
 
-## Convert DPs to pixels
+# Convert DPs to pixels
 
     private int dpToPx(float dps) {
         return (int) (dps * getResources().getDisplayMetrics().density + 0.5f);
     }
 
 
-## Plug/unplug battery charger on emulator. Skip "-s <device_name>" if only one device is connected
+# Plug/unplug battery charger on emulator. Skip "-s <device_name>" if only one device is connected
 
     $ adb -s emulator-5554 shell dumpsys battery unplug
     $ adb -s emulator-5554 shell dumpsys battery reset
 
 
-## Bitmap conversion
+# Bitmap conversion
 
     /** Convert bitmap to byte array */
     private byte[] bitmapToBytes(Bitmap bitmap) {
@@ -43,17 +43,17 @@
     }
 
 
-## Screen orientation
+# Screen orientation
 
     Activity.getResources().getConfiguration().orientation
 
     
-## Rx cache last emitted item
+# Rx cache last emitted item
 
     Observable.replay(1).autoConnect() or Observable.replay(1).refCount
 
     
-## Get frame from video URL
+# Get frame from video URL
 
     private static Bitmap getFrameFromVideoUrl(String videoUrl) {
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
@@ -64,9 +64,9 @@
     }
 
 
-## Vector drawable <-> SVG
+# Vector drawable <-> SVG
 
-#### Vector Drawable
+# Vector Drawable
 
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
@@ -81,7 +81,7 @@
     <path android:pathData="M0,0h24v24H0V0z" />
 </vector>
 
-#### SVG
+# SVG
 
 <svg xmlns="http://www.w3.org/2000/svg"
     width="24" 
@@ -95,28 +95,28 @@
 </svg>
 
 
-## Android Studio logcat inverted filtering: create new filter and add the following to the TAG field
+# Android Studio logcat inverted filtering: create new filter and add the following to the TAG field
 
     ^(?!(zygote|OpenGLRenderer|EGL_emulation|InstantRun))
 
 
-## Kotlin live template: logm $content$
+# Kotlin live template: logm $content$
 
     groovyScript("def params = _2.collect {it + ' = [ $' + it + ' ]'}.join(', '); return '\"' + _1 + '() called' + (params.empty ? '' : ' with: ' + params) + '\"'", kotlinFunctionName(), functionParameters())
 
 
-## Fix hotkeys: Ctrl + Alt + <-, Ctrl + Alt + ->
+# Fix hotkeys: Ctrl + Alt + <-, Ctrl + Alt + ->
 
     $ gsettings get org.gnome.desktop.wm.keybindings switch-to-workspace-left
     $ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
 
 
-## Logcat filtered by uid
+# Logcat filtered by uid
 
     $ adb logcat --pid=$(adb shell ps | grep "ru.niisokb.mcc" | awk '{print $2}')
 
 
-## UDP log
+# UDP log
 
 1. Redirect UDP traffic to file
     
