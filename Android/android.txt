@@ -133,3 +133,8 @@
 4. Switch log file
 
     $ killall socat && socat -u udp-recv:55555,reuseaddr - > test2.log &
+
+
+# Get device properties
+
+    $ adb shell getprop
