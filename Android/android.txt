@@ -116,25 +116,27 @@
     $ adb logcat --pid=$(adb shell ps | grep "ru.niisokb.mcc" | awk '{print $2}')
 
 
-# UDP log
-
-1. Redirect UDP traffic to file
-    
-    $ socat -u udp-recv:55555,reuseaddr - > test.log &
-
-2. Listen to file with filter
-
-    $ tail -n +0 -f log.log | grep FooBar
-
-3. Send test message
-
-    $ netcat -u localhost 55555
-
-4. Switch log file
-
-    $ killall socat && socat -u udp-recv:55555,reuseaddr - > test2.log &
-
-
 # Get device properties
 
     $ adb shell getprop
+
+
+# Log to device as root
+
+    $ adb root
+    $ adb shell
+
+
+## Get PID of process
+
+    $ adb shell ps | grep <UID> | awk '{print $2}'
+
+
+## Set device owner package
+
+    $ adb shell dpm set-device-owner ru.niisokb.mcc/.AdminReceiver
+
+
+## Make HTTP request and print formatted JSON response
+
+    $ curl 'https://127.0.0.1/store/apps' -H 'X-MCC-ID: 101' -k | python -m json.tool

@@ -1,4 +1,7 @@
 -------------------------------------------------------------------------------
+# Hosts (DNS lookup)
+    /etc/hosts  # add <address> <name>
+
 # iPython startup dir
     Place "autorun.ipy" to ~/.ipython/profile_default/startup
 
