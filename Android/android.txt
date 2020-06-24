@@ -140,3 +140,9 @@
 ## Make HTTP request and print formatted JSON response
 
     $ curl 'https://127.0.0.1/store/apps' -H 'X-MCC-ID: 101' -k | python -m json.tool
+
+## Dagger + Kotlin generics injection
+
+    At injection site:
+    SomeType<@JvmSuppressWildcards OtherType>
+

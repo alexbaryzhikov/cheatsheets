@@ -1,4 +1,7 @@
 -------------------------------------------------------------------------------
+# Grab server public certificate
+    $ echo | openssl s_client -connect ${MY_SERVER}:443 2>&1 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > mycert.pem
+
 # Hosts (DNS lookup)
     /etc/hosts  # add <address> <name>
 

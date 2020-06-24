@@ -1,0 +1,21 @@
+# Generate Java keystore.
+
+keytool -genkey -v -keystore test_keystore.jks -alias test -keyalg RSA -keysize 2048 -validity 10000
+
+# Generate Bouncy Castle keystore.
+#
+# You need bcprov.jar
+#   - get from https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16/1.46
+#   - or from from http://www.bouncycastle.org/latest_releases.html
+#
+# ATTENTION! Make sure to use the same provider version to generate keystore and to load keystore in the app.
+
+keytool -genkey -v -keystore test_keystore.bks -storetype BKS -alias test -keyalg RSA -keysize 2048 -validity 10000 -providerclass org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath bcprov.jar
+
+# Convert Java keystore to Bouncy Castle keystore.
+
+keytool -importkeystore -srckeystore test.keystore.jks -destkeystore test.keystore.bks -deststoretype BKS -provider org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath bcprov.jar
+
+# Export certificate from Bouncy Castle keystore.
+
+keytool -export -v -keystore test_keystore.bks -storetype BKS -alias test -file certificate.pem -rfc -providerclass org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath bcprov.jar
