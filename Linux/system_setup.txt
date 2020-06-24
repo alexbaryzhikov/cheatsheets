@@ -76,45 +76,42 @@ else
 fi
 ```
 
+    ## Applications
 
-## Apps
+# Apps
     alsamixer           # Audio mixer (helps fixing mic loopback)
     bmon                # Network monitor
-    brasero             # DVD burner
-    chrome
-    firefox
-    dosbox
     dropbox
     htop                # Better than top
     keepass2
     mc
-    OBS
     openssh-client
     openssh-server
     remmina             # Remote desktop manager
-    telegram
     woeusb              # Creating Windows USB from a disk image
 
-
-## Dev tools
+# Dev tools
     git
     hexedit             # Hex editor
     openjdk-8-jdk       # java SDK
     perf                # Performance analysis tools
     valgrind            # Tools for debugging and profiling
 
-
-## IDEs
+# IDEs
     Android Studio
     intelliJ IDEA
-    PyCharm
-    Atom
-    Sublime Text
 
+# Editors
+    VS Code
+    Sublime Text 3
 
-## Tensorflow + Keras
-    cuda                # CUDA toolkit
-    cudnn               # cuDNN library
-    tensorflow          
-    keras
+# Browsers
+    Chrome
+    Edge
+    Mozilla
+
+# Messengers
+    Telegram
+    Skype
+    Slack
     
