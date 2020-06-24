@@ -1,0 +1,8 @@
+Context.getFilesDir() = /data/user/0/ru.alexb.myapp/files
+Context.getCacheDir() = /data/user/0/ru.alexb.myapp/cache
+Context.getDataDir() = /data/user/0/ru.alexb.myapp
+Context.getExternalFilesDirs(null) = [/storage/emulated/0/Android/data/ru.alexb.myapp/files]
+Context.getExternalCacheDirs() = [/storage/emulated/0/Android/data/ru.alexb.myapp/cache]
+Context.getExternalMediaDirs() = [/storage/emulated/0/Android/media/ru.alexb.myapp]
+Environment.getExternalStorageDirectory() = /storage/emulated/0
+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) = /storage/emulated/0/Download

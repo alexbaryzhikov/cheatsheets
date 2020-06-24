@@ -1,8 +1,0 @@
-2020-02-10 15:12:34.224 D/MainActivity: Context.getFilesDir() = /data/user/0/ru.niisokb.myapplication/files
-2020-02-10 15:12:34.224 D/MainActivity: Context.getCacheDir() = /data/user/0/ru.niisokb.myapplication/cache
-2020-02-10 15:12:34.224 D/MainActivity: Context.getDataDir() = /data/user/0/ru.niisokb.myapplication
-2020-02-10 15:12:34.225 D/MainActivity: Context.getExternalFilesDirs(null) = [/storage/emulated/0/Android/data/ru.niisokb.myapplication/files, /storage/0DF4-2604/Android/data/ru.niisokb.myapplication/files]
-2020-02-10 15:12:34.226 D/MainActivity: Context.getExternalCacheDirs() = [/storage/emulated/0/Android/data/ru.niisokb.myapplication/cache, /storage/0DF4-2604/Android/data/ru.niisokb.myapplication/cache]
-2020-02-10 15:12:34.226 D/MainActivity: Context.getExternalMediaDirs() = [/storage/emulated/0/Android/media/ru.niisokb.myapplication, /storage/0DF4-2604/Android/media/ru.niisokb.myapplication]
-2020-02-10 15:12:34.227 D/MainActivity: Environment.getExternalStorageDirectory() = /storage/emulated/0
-2020-02-10 15:12:34.227 D/MainActivity: Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) = /storage/emulated/0/Download
