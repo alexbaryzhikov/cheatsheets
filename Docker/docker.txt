@@ -1,0 +1,4 @@
+# Run container and mount local directory
+
+docker run -it -v C:\Dev:/usr/src ubuntu bash
+
