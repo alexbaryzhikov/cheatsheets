@@ -19,3 +19,24 @@ keytool -importkeystore -srckeystore test.keystore.jks -destkeystore test.keysto
 # Export certificate from Bouncy Castle keystore.
 
 keytool -export -v -keystore test_keystore.bks -storetype BKS -alias test -file certificate.pem -rfc -providerclass org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath bcprov.jar
+
+
+# Generate certificate chain
+
+## Generate keypairs for future chain
+keytool -genkeypair -keystore test.jks -alias root -storetype pkcs12 -dname "CN=Root" -ext bc:c
+keytool -genkeypair -keystore test.jks -alias ca -storetype pkcs12 -dname "CN=CA" -ext bc:c
+keytool -genkeypair -keystore test.jks -alias server -storetype pkcs12 -dname "CN=Server"
+
+## Create signing requests
+keytool -certreq -keystore test.jks -storepass 1qaz2wsx -alias ca -file ca.csr
+keytool -certreq -keystore test.jks -storepass 1qaz2wsx -alias server -file server.csr
+
+## Sign certificates
+keytool -gencert -keystore test.jks -storepass 1qaz2wsx -alias root -rfc -infile ca.csr -outfile ca.pem
+keytool -importcert -keystore test.jks -storepass 1qaz2wsx -alias ca -file ca.pem
+keytool -gencert -keystore test.jks -storepass 1qaz2wsx -alias ca -rfc -infile server.csr -outfile server.pem
+keytool -importcert -keystore test.jks -storepass 1qaz2wsx -alias server -file server.pem
+
+## Create new keystore with server chain
+keytool -importkeystore -srckeystore test.jks -srcstorepass 1qaz2wsx -destkeystore server.jks -deststoretype pkcs12 -srcalias server -destalias server
