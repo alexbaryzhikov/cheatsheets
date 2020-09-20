@@ -12,13 +12,13 @@ ARG ANDROID_API_LEVEL=29
 ARG ANDROID_BUILD_TOOLS_LEVEL=29.0.3
 ARG GRADLE_VERSION=6.1.1
 
-RUN wget "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -P /tmp \
+RUN wget --no-verbose "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -P /tmp \
 && unzip -d /opt/gradle /tmp/gradle-${GRADLE_VERSION}-bin.zip \
 && mkdir /opt/gradlew \
 && /opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle wrapper --gradle-version ${GRADLE_VERSION} --distribution-type all -p /opt/gradlew \
 && /opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle wrapper -p /opt/gradlew 
 
-RUN wget "https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip" -P /tmp \
+RUN wget --no-verbose "https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip" -P /tmp \
 && mkdir -p /opt/android/cmdline-tools \
 && unzip -d /opt/android/cmdline-tools /tmp/commandlinetools-linux-6609375_latest.zip
 
@@ -42,5 +42,5 @@ ENV GRADLE_HOME=/opt/gradle/gradle-$GRADLE_VERSION
 ENV PATH=$GRADLE_HOME/bin:/opt/gradlew:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 ENV LD_LIBRARY_PATH=$ANDROID_HOME/emulator/lib64:$ANDROID_HOME/emulator/lib64/qt/lib
 
-COPY start.sh /
-RUN chmod +x start.sh && sed -i 's/\r$//' start.sh 
+COPY start_emulator.sh /
+RUN chmod +x start_emulator.sh && sed -i 's/\r$//' start_emulator.sh 

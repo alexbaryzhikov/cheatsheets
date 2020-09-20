@@ -15,4 +15,4 @@ docker run --privileged -it --rm \
     -e ANDROID_KEYSTORE_ALIAS="niisokb" \
     -e ANDROID_KEYSTORE_ALIAS_PASS='Fvbb871@@3' \
     $DOCKER_IMAGE \
-    bash -c "/start.sh && gradlew $GRADLE_TASK -p /project"
+    bash -c "/start_emulator.sh && gradlew $GRADLE_TASK -p /project"
