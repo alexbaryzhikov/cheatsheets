@@ -1,4 +1,6 @@
--------------------------------------------------------------------------------
+# Count number of lines in source files
+    $ find -name "*.java" -o -name "*.kt" | awk '{ system("wc -l " $1) }' | awk '{ total += $1 }; END { print total }'
+    
 # Grab server public certificate
     $ echo | openssl s_client -connect ${MY_SERVER}:443 2>&1 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > mycert.pem
 
