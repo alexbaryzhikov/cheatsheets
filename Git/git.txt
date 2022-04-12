@@ -64,6 +64,13 @@ Clone repo
     git clone git://github.com/schacon/simplegit.git
     git clone git://github.com/schacon/simplegit.git my_directory
 
+Migrate repo
+
+    Create new empty repository <dest>
+    git clone --mirror <source>
+    git remote add <dest>
+    git push --mirror <dest>
+
 Ignoring
 
     .gitignore
